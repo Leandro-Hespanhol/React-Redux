@@ -1,8 +1,9 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import Card from './Card';
 
-export default (props) => {
+const Media = (props) => {
   const { min, max } = props;
   return (
     <Card title="Média dos Números" green>
@@ -13,3 +14,12 @@ export default (props) => {
     </Card>
   );
 };
+
+function mapStateToProps(state) {
+  return {
+    min: state.numeros.min,
+    max: state.numeros.max,
+  };
+}
+
+export default connect(mapStateToProps)(Media);

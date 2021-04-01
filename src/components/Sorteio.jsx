@@ -1,11 +1,11 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import Card from './Card';
 
-export default (props) => {
+const Sorteio = (props) => {
   const { min, max } = props;
   const aleatorio = parseInt(Math.random() * (max - min)) + min;
-  /* Math.random() pega um valor entre 0 e 1. parseInt transforma no próximo valor inteiro*/
   return (
     <Card title="Sorteio de um Número" purple>
       <div>
@@ -15,3 +15,12 @@ export default (props) => {
     </Card>
   );
 };
+
+function mapStateToProps(state) {
+  return {
+    min: state.numeros.min,
+    max: state.numeros.max,
+  };
+}
+
+export default connect(mapStateToProps)(Sorteio);
